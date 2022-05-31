@@ -25,8 +25,14 @@ let persons = [
       "number": "39-23-6423122"
     }
 ]
+
+app.use(express.static('build'))
 app.use(morgan('tiny'))
 app.use(cors())
+
+app.get('/', (request, response) => {
+    response.redirect('/build/index.html')
+  })
 
 app.get('/api/persons', (request, response) => {
     response.json(persons)
